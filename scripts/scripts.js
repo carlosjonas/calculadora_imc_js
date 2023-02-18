@@ -87,6 +87,13 @@ function validDigits(text){
 	return text.replace(/[^0-9,]/g, "");
 }
 
+//Função que calcula o imc
+function calcImc(weight,height){
+	const imc = (weight/ (height * height)).toFixed(1);
+
+	return imc;
+}
+
 
 //Inicialização
 createTable(data);
@@ -98,6 +105,17 @@ createTable(data);
 
 		e.target.value = updateValue;
 	});
+});
+
+calcBtn.addEventListener("click", (e) =>{
+	const weight = +weightInput.value.replace(",",".");
+	const height = +heightInput.value.replace(",",".");
+
+	if (!weight || !height) return;
+
+	const imc = calcImc(weight, height);
+
+	console.log(imc);
 });
 
 clearBtn.addEventListener("click", (e) => {
