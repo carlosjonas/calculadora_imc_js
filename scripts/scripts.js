@@ -82,10 +82,24 @@ function clearInput(){
 	weightInput.value = "";
 }
 
+//Função que valida os textos dos inputs para só número e ,
+function validDigits(text){
+	return text.replace(/[^0-9,]/g, "");
+}
+
+
 //Inicialização
 createTable(data);
 
 //Eventos
+[heighInput, weightInput].forEach((el) => {
+	el.addEventListener("input", (e) => {
+		const updateValue = validDigits(e.target.value);
+
+		e.target.value = updateValue;
+	});
+});
+
 clearBtn.addEventListener("click", (e) => {
 
 	clearInput();
